@@ -15,7 +15,7 @@ class CreateRegistrosTable extends Migration
     {
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_usuario')->constrained('usuarios');
+            $table->foreignId('id_usuario')->constrained('users');
             $table->string('nombres y apellidos', 200);
             $table->integer('dni');
             $table->string('correo', 120);

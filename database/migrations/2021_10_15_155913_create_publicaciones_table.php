@@ -15,7 +15,7 @@ class CreatePublicacionesTable extends Migration
     {
         Schema::create('publicaciones', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_usuario')->constrained('usuarios');
+            $table->foreignId('id_usuario')->constrained('users');
             $table->string('incidente', 120);
             $table->string('lugar', 120);
             $table->string('fecha', 120);

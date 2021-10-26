@@ -8,5 +8,5 @@ use App\Models\Modelo;
 
 class Administrador extends Model
 {
-    use HasFactory;
+    //
 }

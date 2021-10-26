@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\RegistroController;
-use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\PublicacionController;
-
+use App\Http\Controllers\AdministradorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +20,12 @@ use App\Http\Controllers\PublicacionController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
 
 Route::resource('usuario', UsuarioController::class)->middleware('auth');
 Route::resource('registro', RegistroController::class)->middleware('auth');
