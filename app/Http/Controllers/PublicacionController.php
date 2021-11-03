@@ -33,7 +33,7 @@ class PublicacionController extends Controller
      */
     public function create()
     {
-        //
+        return view('publicacion.crear');
     }
 
     /**
@@ -44,7 +44,17 @@ class PublicacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "incidente" => "required | alpha | max 100",
+            "lugar" => "required | max:20"
+        ]);
+
+        $publi = new Publicacion();
+        $publi->incidente = $request->incidente;
+        $publi->lugar = $request->lugar;
+        $publi->fecha = $request->fecha;
+        $publi-> save();
+        return redirect(Route("publicacion.index"));
     }
 
     /**

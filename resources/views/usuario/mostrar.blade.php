@@ -43,7 +43,7 @@
                             </tr>
                         @endforeach
                     </table>
-                    <a href="{{Route("usuario.create")}}">Agregar publicacion</a>
+                    <a href="{{Route("usuario.create")}}">Agregar Usuario</a>
                 </div>
             </div>
         </div>
