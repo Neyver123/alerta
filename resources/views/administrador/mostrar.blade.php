@@ -12,32 +12,24 @@
                     <table class="table w-full">
                         <tr>
                             <th>id</th>
-                            <th>id usuario</th>
-                            <th>incidente</th>
-                            <th>lugar</th>
-                            <th>Fecha</th>
-                            <th>Imagen de referencia</th>
-                            <th>&nbsp</th>
-                            <th>&nbsp</th>
+                            <th>Nombre de usuario</th>
+                            <th>contraseña</th>
                         </tr>
 
-                        @foreach ($publicaciones as $pub)
+                        @foreach ($adminis as $ad)
                             <tr>
-                                <td>{{$pub->id}}</td>
-                                <td>{{$pub->id_usuario}}</td>
-                                <td>{{$pub->incidente}}</td>
-                                <td>{{$pub->lugar}}</td>
-                                <td>{{$pub->fecha}}</td>
-                                <td>{{$pub->imagen}}</td>
+                                <td>{{$ad->id}}</td>
+                                <td>{{$ad->nom_usu}}</td>
+                                <td>{{$ad->contraseña}}</td>
                                 <td>
-                                    <form method='get' action='publicacion/{{$pub->id}}/edit'>
+                                    <form method='get' action='administrador/{{$ad->id}}/edit'>
                                         <input type='submit' value='Actualizar'>
                                         @csrf
                                         @method("GET")
                                     </form>
                                 <td>
-                                    <form method='post' action='publicacion/{{$pub->id}}'>
-                                        <input type='submit' value='Elimnar'>
+                                    <form method='post' action='administrador/{{$ad->id}}'>
+                                        <input type='submit' value='Eliminar'>
                                         @csrf
                                         @method("DELETE")
                                     </form>
@@ -45,7 +37,7 @@
                             </tr>
                         @endforeach
                     </table>
-                    <a href="{{Route("publicacion.create")}}">Agregar publicacion</a>
+                    <a href="{{Route("administrador.create")}}">Agregar Administrador</a>
                 </div>
             </div>
         </div>

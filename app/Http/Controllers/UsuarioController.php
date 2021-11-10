@@ -33,7 +33,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.register');
     }
 
     /**
@@ -66,7 +66,8 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $resultado = User::find($id);
+        return view('usuario.editar', ["usuario"=>$resultado]);
     }
 
     /**
@@ -78,7 +79,14 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $usu = User::find($id);
+        $usu->name = $request->nombre;
+        $usu->email = $request->correo;
+        $usu->password = $request->contra;
+        $usu->created_at = $request->crea;
+        $usu->update_at = $request->actu;
+        $usu-> save();
+        return redirect(Route("usuario.index"));
     }
 
     /**
@@ -89,6 +97,8 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $usu = User::find($id);
+        $usu->delete();
+        return redirect(Route("usuario.index"));
     }
 }

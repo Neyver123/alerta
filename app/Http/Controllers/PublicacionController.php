@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Publicacion;
 use Illuminate\Http\Request;
+use App\Models\Publicacion;
 use Illuminate\Support\Facades\Auth;
 
 class PublicacionController extends Controller
@@ -53,6 +53,7 @@ class PublicacionController extends Controller
         $publi->incidente = $request->incidente;
         $publi->lugar = $request->lugar;
         $publi->fecha = $request->fecha;
+        $publi->imagen = $request->addslashes(file_get_contents($_FILES["imag"]["tp_name"]));
         $publi-> save();
         return redirect(Route("publicacion.index"));
     }
@@ -76,7 +77,8 @@ class PublicacionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $resultado = Publicacion::find($id);
+        return view('publicacion.editar', ["publicacion"=>$resultado]);
     }
 
     /**
@@ -88,7 +90,13 @@ class PublicacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $publi = Publicacion::find($id);
+        $publi->id_usuario = $request->idusu;
+        $publi->incidente = $request->inci;
+        $publi->lugar = $request->lugar;
+        $publi->fecha = $request->fech;
+        $publi-> save();
+        return redirect(Route("publicacion.index"));
     }
 
     /**
@@ -99,6 +107,8 @@ class PublicacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $publi = Publicacion::find($id);
+        $publi->delete();
+        return redirect(Route("publicacion.index"));
     }
 }

@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
-use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\PublicacionController;
 use App\Http\Controllers\AdministradorController;
 
@@ -28,6 +27,5 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::resource('usuario', UsuarioController::class)->middleware('auth');
-Route::resource('registro', RegistroController::class)->middleware('auth');
 Route::resource('publicacion', PublicacionController::class)->middleware('auth');
 Route::resource('administrador', AdministradorController::class)->middleware('auth');

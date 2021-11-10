@@ -15,18 +15,12 @@
                                placeholder="ingrese una breve descripcion del incidente" value="{{old("incidente")}}"><br>
                         <input type="text" @error("lugar") style="border:2px red solid" @enderror name="lugar"
                                placeholder="ingrese la dirección" value="{{old("lugar")}}"><br>
-                        <input type="text" @error("fecha") style="border:2px red solid" @enderror name="fecha"
+                        <input type="date" @error("fecha") style="border:2px red solid" @enderror name="fecha"
                                placeholder="ingrese la fecha" value="{{old("fecha")}}"><br>
+                        <input type="file" @error("imagen") style="border:2px red solid" @enderror name="imag"
+                               placeholder="ingrese imagen de referencia" value="{{old("imagen")}}"><br>
                         <input type="submit" value="Guardar">
                     </form>
-
-                    @if ($errors->any())
-                        <div style="color:red">
-                            @foreach($errors->all() as $error)
-                                {{$error}}<br>
-                            @endforeach
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>

@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('publicacion.create')" :active="request()->routeIs('dashboard')">
                         Crear publicacion
                     </x-nav-link>
+                    <x-nav-link :href="route('administrador.index')" :active="request()->routeIs('dashboard')">
+                        Ver administradores
+                    </x-nav-link>
                 </div>
             </div>
 

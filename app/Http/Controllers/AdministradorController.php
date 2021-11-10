@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Administrador;
+use Illuminate\Support\Facades\Auth;
 
 class AdministradorController extends Controller
 {
@@ -13,7 +15,15 @@ class AdministradorController extends Controller
      */
     public function index()
     {
-        //
+        if(Auth::check()){
+            $admin = new Administrador();
+            $resultado = $admin::get();
+            return view('administrador.mostrar')
+                ->with('adminis', $resultado)
+                ->with('titulo', 'MOSTRAR ADMINISTRADORES');
+        }else{
+            return redirect(route('login'));
+        }
     }
 
     /**
@@ -23,7 +33,7 @@ class AdministradorController extends Controller
      */
     public function create()
     {
-        //
+        return view('administrador.crear');
     }
 
     /**
@@ -34,7 +44,11 @@ class AdministradorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $admin = new Administrador();
+        $admin->nom_usu = $request->nomusu;
+        $admin->contraseña = $request->contraseña;
+        $admin-> save();
+        return redirect(Route("administrador.index"));
     }
 
     /**
@@ -56,7 +70,8 @@ class AdministradorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $resultado = Administrador::find($id);
+        return view('administrador.editar', ["administrador"=>$resultado]);
     }
 
     /**
@@ -68,7 +83,11 @@ class AdministradorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $admin = Administrador::find($id);
+        $admin->nom_usu = $request->nomusu;
+        $admin->contraseña = $request->pass;
+        $admin-> save();
+        return redirect(Route("administrador.index"));
     }
 
     /**
@@ -79,6 +98,8 @@ class AdministradorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admin = Administrador::find($id);
+        $admin->delete();
+        return redirect(Route("administrador.index"));
     }
 }
